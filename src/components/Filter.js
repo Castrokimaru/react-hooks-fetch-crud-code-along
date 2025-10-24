@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import ShoppingList from "./ShoppingList";
-import Header from "./Header";
+import React from "react";
 
-function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  function handleDarkModeClick() {
-    setIsDarkMode((isDarkMode) => !isDarkMode);
+function Filter({ category, onCategoryChange }) {
+  function handleChange(event) {
+    onCategoryChange(event.target.value);
   }
 
   return (
-    <div className={"App " + (isDarkMode ? "dark" : "light")}>
-      <Header isDarkMode={isDarkMode} onDarkModeClick={handleDarkModeClick} />
-      <ShoppingList />
+    <div className="Filter">
+      <select name="filter" value={category} onChange={handleChange}>
+        <option value="All">All</option>
+        <option value="Produce">Produce</option>
+        <option value="Dairy">Dairy</option>
+        <option value="Dessert">Dessert</option>
+      </select>
     </div>
   );
 }
 
-export default App;
+export default Filter;
